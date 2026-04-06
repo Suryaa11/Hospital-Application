@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hospital-deploy
+  namespace: hospital-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hospital
+  strategy:
+    type: RollingUpdates
+    rollingUpdates:
+      maxUnavailabe: 25%
+      maxSurge: 25%
+  template:
+    metadata:
+      labels:
+        app: hospital
+    spec:
+      containers:
+      - name: hospital-cont
+        image: suryaa112003/hospital:v1.1.1
+        ports:
+          - containerPort: 5000
+        resources:
+          requests: 
+            cpu: "100m"
+            memory: "256Mi"
+          limits: 
+            cpu: "200m"
+            memory: "512Mi"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-svc
+  namespace: hospital-ns
+spec:
+  matchLabels:
+    app: hospital
+  ports:
+    - ports: 5001
+      targetPort: 5000
+  type: NodePort
