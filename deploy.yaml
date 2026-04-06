@@ -9,8 +9,8 @@ spec:
     matchLabels:
       app: hospital
   strategy:
-    type: RollingUpdates
-    rollingUpdates:
+    type: RollingUpdate
+    rollingUpdate:
       maxUnavailabe: 25%
       maxSurge: 25%
   template:
@@ -41,6 +41,6 @@ spec:
   matchLabels:
     app: hospital
   ports:
-    - ports: 5001
+    - port: 5001
       targetPort: 5000
   type: NodePort
