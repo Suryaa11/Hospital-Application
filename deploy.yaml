@@ -30,6 +30,9 @@ spec:
           limits: 
             cpu: "200m"
             memory: "512Mi"
+      env:
+        - name: MONGO_URI
+          value: "mongodb://backend-svc:27017/hospital_management"
 ---
 
 apiVersion: v1
