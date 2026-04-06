@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
     - name: cont
-      images: suryaa112003/hospital:v1.1.0
+      image: suryaa112003/hospital:v1.1.0
       ports: 
         - containerPort: 5000
