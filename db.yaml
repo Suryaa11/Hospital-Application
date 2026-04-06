@@ -51,8 +51,7 @@ metadata:
   namespace: hospital-ns
 spec:
   selector:
-    labels:
-      app: mongo
+    app: mongo
   ports:
     - port: 27017
       containerPort: 27017
