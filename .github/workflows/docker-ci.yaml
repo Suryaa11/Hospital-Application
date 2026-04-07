@@ -42,6 +42,7 @@ jobs:
 
     # 6️⃣ Push Docker image (only on main branch)
     - name: Push Docker Image
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/master'
       run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
+        IMAGE_NAME=$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')
+        docker push ${{ secrets.DOCKER_USERNAME }}/$IMAGE_NAME:v1.1.0
