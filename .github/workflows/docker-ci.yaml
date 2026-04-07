@@ -29,7 +29,8 @@ jobs:
     # 4️⃣ Build Docker image
     - name: Build Docker Image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest .
+        IMAGE_NAME=$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/$IMAGE_NAME:latest .
 
     # 5️⃣ Scan Docker image using Trivy
     - name: Scan Docker Image
